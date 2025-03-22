@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页 - PIMS信息管理系统</title>
+    <link rel="stylesheet" href="view/css/styles.css">
+    <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+    <script src="view/js/chart.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <h1>PIMS信息管理系统</h1>
+            <ul>
+                <li><a href="index.php?page=main">主页</a></li>
+                <li><a href="index.php?page=accountManage">账号管理</a></li>
+                <li><a href="index.php?page=backupRestore">备份恢复</a></li>
+                <li><a href="index.php?page=recycleBin">回收站</a></li>
+                <li><a href="index.php?page=systemSettings">系统设置</a></li>
+                <li><a href="core/logout.php">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="container">
+        <h2>欢迎使用PIMS信息管理系统</h2>
+        <div class="admin-info">
+            <img id="adminAvatar" src="" alt="管理员头像" class="admin-avatar">
+            <div>
+                <!--<p><strong>管理员ID：</strong> <span id="adminId"></span><span id="adminId"></span></p>-->
+                <p><strong>管理员：</strong> <span id="adminNickname"></span> (uid:<span id="adminId"></span>)</p>
+            </div>
+        </div>
+        <div class="dashboard">
+            <div class="card system-overview">
+                <h3>系统概览</h3>
+                <div id="systemOverview">
+                    <p>加载中...</p>
+                </div>
+				<p style="margin-top:30px;padding-top:10px;font-size:0.8em;color:#555;border-top:1px solid #ededed;">				
+				<b>系统简介：</b><br />1. PIMS为账号信息管理系统，采用PHP+MySql技术开发，支持信息增、删、改、查、搜索、备份+恢复和系统设置等功能。<br />
+				2. 运行环境要求：服务器最低配置须满足Apache 2.0/Nginx 1.4、PHP5.4、MySQL3.5以上。			
+				</p>
+            </div>
+            <div class="card">
+                <h3>用户访问量(PV)</h3>
+                <canvas id="visitorChart"></canvas>
+            </div>
+            <div class="card">
+                <h3>服务器性能</h3>
+                <canvas id="serverLoadChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p>2025&copy;Mekbo Team Powered by Arlvin (PIMS v1.0)</p>
+        </div>
+    </footer>
+    <script src="view/js/main.js"></script>
+</body>
+</html>

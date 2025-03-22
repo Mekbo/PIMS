@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统回收站 - PIMS信息管理系统</title>
+    <link rel="stylesheet" href="view/css/styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <h1>PIMS信息管理系统</h1>
+            <ul>
+                <li><a href="index.php?page=main">主页</a></li>
+                <li><a href="index.php?page=accountManage">账号管理</a></li>
+                <li><a href="index.php?page=backupRestore">备份恢复</a></li>
+                <li><a href="index.php?page=recycleBin">回收站</a></li>
+                <li><a href="index.php?page=systemSettings">系统设置</a></li>
+                <li><a href="core/logout.php">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>系统回收站</h2>
+        <div class="recycle-bin">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="请输入账号、手机、邮箱、平台、备注等任意信息来搜索需要恢复或彻底删除的账号...">
+                <button class="btn" onclick="searchDeletedAccounts()">搜索</button>
+            </div>
+			<button class="btn" onclick="restoreAccountAll()">恢复/批量恢复</button>
+            <button class="btn" onclick="emptyRecycleBin()">清空回收站</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectAll" onclick="toggleSelectAll()"></th>
+                        <th>账号</th>
+                        <th>密码</th>
+                        <th>手机</th>
+                        <th>邮箱</th>
+                        <th>平台</th>
+                        <th>注册日期</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="deletedAccountsTableBody">
+                    <!-- 已删除账号列表将通过JavaScript动态填充 -->
+                </tbody>
+            </table>
+            <div class="pagination-container">
+                <div class="pagination" id="pagination">
+                    <!-- 分页控件将通过JavaScript动态填充 -->
+                </div>
+                <div class="pagination-info" id="paginationInfo">
+                    <!-- 分页信息将通过JavaScript动态填充 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+			<div class="container">
+				<p>2025 &copy; Mekbo Team Powered by Arlvin v1.0</p>
+			</div>
+		</footer>
+    <!-- 密码验证模态框 -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePasswordModal()">&times;</span>
+            <h2>请输入管理员密码</h2>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="adminPassword">管理员密码</label>
+                    <input type="password" id="adminPassword" required>
+                </div>
+                <button type="submit" class="btn">确认</button>
+            </form>
+        </div>
+    </div>
+    <script src="view/js/recycleBin.js"></script>
+</body>
+</html>

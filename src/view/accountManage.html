@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账号管理 - PIMS信息管理系统</title>
+    <link rel="stylesheet" href="view/css/styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <h1>PIMS信息管理系统</h1>
+            <ul>
+                <li><a href="index.php?page=main">主页</a></li>
+                <li><a href="index.php?page=accountManage">账号管理</a></li>
+                <li><a href="index.php?page=backupRestore">备份恢复</a></li>
+                <li><a href="index.php?page=recycleBin">回收站</a></li>
+                <li><a href="index.php?page=systemSettings">系统设置</a></li>
+                <li><a href="core/logout.php">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>账号管理</h2>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="请输入账号、手机、邮箱、平台、备注等任意信息进行搜索...">
+            <button class="btn" onclick="searchAccounts()">搜索</button>
+        </div>   
+		<button class="btn" onclick="deletAllAccount()">删除/批量删除</button>
+		<button class="btn" onclick="showAddAccountModal()">添加账号</button>
+		<button class="btn" onclick="showImportModal()">批量导入</button>
+		<button class="btn" onclick="showExportModal()">全部导出</button>
+        <table id="accountsTable">
+            <thead>
+                <tr>
+				 <th><input type="checkbox" id="selectAll" onclick="toggleSelectAll()"></th>
+                    <th>账号名</th>
+                    <th>密码</th>
+                    <th>手机</th>
+                    <th>邮箱</th>
+                    <th>平台</th>
+                    <th>注册日期</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="accountsTableBody">
+                <!-- 账号列表将通过JavaScript动态填充 -->
+            </tbody>
+        </table>
+        <div class="pagination-container">
+            <div class="pagination" id="pagination">
+                <!-- 分页控件将通过JavaScript动态填充 -->
+            </div>
+            <div class="pagination-info" id="paginationInfo">
+                <!-- 分页信息将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 全部导入模态框 -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeImportModal()">&times;</span>
+            <h2>批量导入账号信息</h2>
+            <form id="importForm">
+                <div class="form-group">
+                    <label for="importFile">选择CSV文件  <span>(导入前先下载：<a href="template/accountTemplate.xlsx" title="先把数据在Excel模板中填好后再转为CSV文件上传"> 账号模板 </a>，支持中英文混合数据~)</span></label> 
+                    <input type="file" id="importFile" accept=".csv" required>				
+                </div>
+                <button type="submit" class="btn">确认导入</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 导出确认模态框 -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeExportModal()">&times;</span>
+            <h2>导出账号信息</h2>
+            <form id="exportForm">
+                <div class="form-group">
+                    <label for="exportPassword">请输入您的密码</label>
+                    <input type="password" id="exportPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>选择系统类型</label>
+                    <select id="systemType">
+                        <option value="windows">Windows系统</option>
+                        <option value="linux">Linux系统</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">确认导出</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 添加/编辑账号模态框 -->
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAccountModal()">&times;</span>
+            <h2 id="modalTitle">添加账号</h2>
+            <form id="accountForm">
+                <input type="hidden" id="accountId" readonly>
+                <div class="form-group">
+                    <label for="accountName">账号名</label>
+                    <input type="text" id="accountName" name="account_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="accountPassword">密码</label>
+                    <input type="text" id="accountPassword" name="account_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="nickname">昵称</label>
+                    <input type="text" id="nickname" name="nickname">
+                </div>
+                <div class="form-group">
+                    <label for="phone">手机</label>
+                    <input type="text" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="securityQuestion">密保问题</label>
+                    <textarea id="securityQuestion" name="security_question"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="platform">平台</label>
+                    <input type="text" id="platform" name="platform">
+                </div>
+                <div class="form-group">
+                    <label for="url">网址</label>
+                    <input type="url" id="url" name="url">
+                </div>
+                <div class="form-group">
+                    <label for="registerDate">注册日期</label>
+                    <input type="date" id="registerDate" name="register_date">
+                </div>
+                <div class="form-group">
+                    <label for="remarks">备注</label>
+                    <textarea id="remarks" name="remarks"></textarea>
+                </div>
+                <button type="submit" class="btn">保存</button>
+                <button type="button" class="btn" id="copyInfoBtn" onclick="copyAccountInfo()" style="display: none;">复制信息</button>
+            </form>
+        </div>
+    </div>
+	<footer>
+			<div class="container">
+				<p>2025&copy;Mekbo Team Powered by Arlvin (PIMS v1.0)</p>
+			</div>
+		</footer>
+		 <script src="view/js/accountManage.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据库备份与恢复 - PIMS信息管理系统</title>
+    <link rel="stylesheet" href="view/css/styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <h1>PIMS信息管理系统</h1>
+            <ul>
+                <li><a href="index.php?page=main">主页</a></li>
+                <li><a href="index.php?page=accountManage">账号管理</a></li>
+                <li><a href="index.php?page=backupRestore">备份恢复</a></li>
+                <li><a href="index.php?page=recycleBin">回收站</a></li>
+                <li><a href="index.php?page=systemSettings">系统设置</a></li>
+                <li><a href="core/logout.php">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>数据库备份与恢复</h2>
+        <div class="backup-restore">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索备份文件...">
+                <button class="btn" onclick="searchBackups()">搜索</button>
+            </div>
+            <button class="btn" onclick="createBackup()">创建备份</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>备份名称</th>
+                        <th>大小</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="backupTableBody">
+                    <!-- 备份列表将通过JavaScript动态填充 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 重命名备份文件模态框 -->
+    <div id="renameModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRenameModal()">&times;</span>
+            <h2>重命名备份文件</h2>
+            <form id="renameForm">
+                <input type="hidden" id="oldFileName">
+                <div class="form-group">
+                    <label for="newFileName">新文件名</label>
+                    <input type="text" id="newFileName" required>
+                </div>
+                <button type="submit" class="btn">保存</button>
+            </form>
+        </div>
+    </div>
+     <footer>
+			<div class="container">
+				<p>2025&copy;Mekbo Team Powered by Arlvin (PIMS v1.0)</p>
+			</div>
+		</footer>
+    <script src="view/js/backupRestore.js"></script>
+</body>
+</html>

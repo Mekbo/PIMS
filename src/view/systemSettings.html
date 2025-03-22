@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统设置 - PIMS信息管理系统</title>
+    <link rel="stylesheet" href="view/css/styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <h1>PIMS信息管理系统</h1>
+            <ul>
+                <li><a href="index.php?page=main">主页</a></li>
+                <li><a href="index.php?page=accountManage">账号管理</a></li>
+                <li><a href="index.php?page=backupRestore">备份恢复</a></li>
+                <li><a href="index.php?page=recycleBin">回收站</a></li>
+                <li><a href="index.php?page=systemSettings">系统设置</a></li>
+                <li><a href="core/logout.php">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>系统设置</h2>
+        <div class="settings-form">
+            <h3>管理员信息</h3>
+            <form id="adminInfoForm">
+                <div class="form-group">
+                    <label>当前头像</label>
+                    <img id="currentAvatar" src="" alt="管理员头像" style="width: 100px; height: 100px;">
+                </div>
+                <div class="form-group">
+                    <label for="avatar">更换头像</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="nickname">昵称</label>
+                    <input type="text" id="nickname" name="nickname">
+                </div>
+                <button type="submit" class="btn">保存管理员信息</button>
+            </form>
+
+            <h3>修改密码</h3>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="currentPassword">当前密码</label>
+                    <input type="password" id="currentPassword" name="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">新密码</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">确认新密码</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn">修改密码</button>
+            </form>
+
+            <!--<h3>备份设置</h3>-->
+            <form id="backupSettingsForm">
+                <div class="form-group">
+                    <label for="backupPath">备份文件存放路径</label>
+                    <input type="text" id="backupPath" name="backupPath" readonly>
+                </div>
+                <!--<button type="hidden" class="btn">保存备份设置</button>-->
+            </form>
+
+            <h3>缓存管理</h3>
+            <div class="form-group" style="margin-top: 20px;">
+                <button type="button" class="btn" onclick="clearCache('all')" style="margin-right: 10px;">清除所有缓存</button>
+                <button type="button" class="btn" onclick="clearCache('accounts')" style="margin-right: 10px;">清除账号缓存</button>
+                <button type="button" class="btn" onclick="clearCache('system')" style="margin-right: 10px;">清除系统缓存</button>
+                <button type="button" class="btn" onclick="clearCache('dashboard')">清除仪表盘缓存</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+			<div class="container">
+				<p>2025&copy;Mekbo Team Powered by Arlvin (PIMS v1.0)</p>
+			</div>
+		</footer>
+    <script src="view/js/systemSettings.js"></script>
+</body>
+</html>
