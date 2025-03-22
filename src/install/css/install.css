@@ -1,1 +1,245 @@
+/* 安装程序样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background-color: #34c174;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 10px;
+}
+
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+    z-index: 1;
+}
+
+.step.done:not(:last-child)::after,
+.step.active:not(:last-child)::after {
+    background-color: #2ecc71;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    margin: 0 auto 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.step.active .step-number {
+    background-color: #34c174;
+}
+
+.step.done .step-number {
+    background-color: #2ecc71;
+}
+
+.step-name {
+    font-size: 14px;
+}
+
+main {
+    padding: 30px;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.success-message .icon {
+    font-size: 48px;
+    color: #2ecc71;
+    margin-bottom: 10px;
+}
+
+.check-item {
+    margin-bottom: 20px;
+}
+
+.check-item h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.success {
+    color: #2ecc71;
+}
+
+.error {
+    color: #e74c3c;
+}
+
+.config-section {
+    margin-bottom: 30px;
+}
+
+.config-section h3 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group .help {
+    display: block;
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+}
+
+.actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #34c174;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+.button.prev {
+    background-color: #95a5a6;
+}
+
+.button.prev:hover {
+    background-color: #7f8c8d;
+}
+
+.progress-container {
+    margin: 30px 0;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-inner {
+    height: 100%;
+    background-color: #2ecc71;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.account-info, .config-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.account-info h3, .config-info h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.warning {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    color: #777;
+    font-size: 14px;
+}
